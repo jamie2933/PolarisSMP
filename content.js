@@ -78,7 +78,7 @@ module.exports = {
   ],
 
   // ── Chat moderation (NO AI): delete messages containing any of these words + warn ──
-  bannedWords: ['nigger', 'nigga', 'niga', 'faggot', 'fag', 'retard', 'kys', 'hurensohn'],
+  bannedWords: ['nigger', 'nigga', 'niga', 'faggot', 'fag', 'retard', 'kys', 'nga', 'niger', 'hurensohn'],
   moderationWarn: 'Hey {user}, you can\'t say that.',
 
   // ── Ticket assistant (NO AI): on ticket creation, if the answers match a website-solvable
