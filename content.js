@@ -73,7 +73,6 @@ module.exports = {
   faq: [
     { match: ['ip', 'what is the ip', 'whats the ip', 'server ip', 'how to join', 'how do i join'],
       reply: 'Hey {user}, the IP is **{ip}**' },
-    { match: ['website', 'site'],  reply: 'Hey {user}, our website is {website}' },
     { match: ['apply', 'application', 'media rank'], reply: 'Hey {user}, you can apply on our website: {website}' },
   ],
 
@@ -85,11 +84,13 @@ module.exports = {
   //    case, point them there; otherwise just say support will handle it. ──
   ticketHints: [
     { keywords: ['ban', 'banned', 'unban', 'appeal'],
-      text: 'this looks like it\'s about a **ban** — ban appeals are handled on our website. Submit your **Ban-ID** here: {website}' },
+      text: 'this looks like it\'s about a **ban** — ban appeals are handled on our website. Submit your **Ban-ID** here: https://polaris-support.up.railway.app/appeal.html' },
     { keywords: ['report', 'cheater', 'hacker'],
-      text: 'you can file **reports** (with proof) on our website: {website}' },
+      text: 'you can file **reports** (with proof) on our website: https://polaris-support.up.railway.app/apply.html?type=report-player' },
     { keywords: ['apply', 'application', 'media', 'staff', 'developer'],
       text: 'applications are done on our website: {website}' },
+    { keywords: ['bug', 'bugs'],
+      text: 'this looks like it\'s about a Bug Report - Please report a bug on our website: https://polaris-support.up.railway.app/apply.html?type=bug' },
   ],
   ticketSolvable: 'Hey {user}! 👋 {hint}\n\nIf that doesn\'t solve it, no worries — support will handle this here soon. 💙',
   ticketDefault: 'Hey {user}! 👋 Thanks for opening a ticket — support will handle this soon. 💙',
