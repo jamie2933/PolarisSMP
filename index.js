@@ -357,7 +357,7 @@ async function callGroqAssistant(system, history) {
       method: 'POST',
       headers: { 'content-type': 'application/json', authorization: 'Bearer ' + GROQ_API_KEY },
       // reasoning_effort:'low' + json_object → gpt-oss returns pure JSON (no leaked reasoning prose).
-      body: JSON.stringify({ model: GROQ_MODEL, temperature: 0.4, max_tokens: 500, reasoning_effort: 'low', response_format: { type: 'json_object' }, messages }),
+      body: JSON.stringify({ model: GROQ_MODEL, temperature: 0.4, max_tokens: 500, reasoning_effort: 'low', messages }),
     });
     if (!r.ok) { console.warn('Groq', GROQ_MODEL, r.status, (await r.text()).slice(0, 150)); return null; }
     const d = await r.json();
