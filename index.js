@@ -745,6 +745,20 @@ require('http').createServer((req, res) => {
     });
     return;
   }
+  // The website asks whether a Discord username is actually a member of our guild, so appeals/reports/
+  // applications can require a reachable Discord (and re-prompt) instead of submitting into the void.
+  if (req.method === 'POST' && req.url === '/api/verify-discord') {
+    if (!DECISION_SECRET || req.headers['x-decision-secret'] !== DECISION_SECRET) { res.writeHead(401); return res.end('unauthorized'); }
+    let body = '';
+    req.on('data', (c) => { body += c; if (body.length > 100_000) req.destroy(); });
+    req.on('end', async () => {
+      let data; try { data = JSON.parse(body || '{}'); } catch { res.writeHead(400); return res.end('bad json'); }
+      const member = await resolveMember(data.discord).catch(() => null);
+      res.writeHead(200, { 'content-type': 'application/json' });
+      res.end(JSON.stringify(member ? { found: true, id: member.id, username: member.user.username } : { found: false }));
+    });
+    return;
+  }
   res.writeHead(200); res.end('PolarisBot OK');
 }).listen(process.env.PORT || 3000, () => console.log('HTTP server on', process.env.PORT || 3000));
 
